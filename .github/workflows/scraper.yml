@@ -21,7 +21,9 @@ jobs:
         run: pip install -r requirements.txt
         
       - name: Run scraper
-        run: python main.py
+        run: |
+          mkdir -p output
+          python main.py
         
       - name: Commit and push data changes
         run: |
