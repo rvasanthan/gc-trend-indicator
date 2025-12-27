@@ -1,0 +1,55 @@
+name: Bi-weekly Scraper
+on:
+  schedule:
+    - cron: '0 0 1,15 * *' # Runs on the 1st and 15th
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+        
+      - name: Run scraper
+        run: python main.py
+        
+      - name: Commit and push data changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/data.json output/data.csv web/public/data.json
+          git commit -m "chore: update visa data [skip ci]" || echo "No changes to commit"
+          git push
+          
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'web/package-lock.json'
+          
+      - name: Install Node dependencies
+        run: |
+          cd web
+          npm install
+          
+      - name: Build React App
+        run: |
+          cd web
+          npm run build
+          
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web/dist

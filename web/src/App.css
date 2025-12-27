@@ -1,0 +1,57 @@
+/* Custom Chart Overrides */
+.recharts-cartesian-grid-horizontal line {
+  stroke-opacity: 0.4;
+}
+
+.recharts-tooltip-cursor {
+  stroke-opacity: 0.2;
+}
+
+/* Smooth Tab Transitions */
+.animate-in {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-from-bottom-8 {
+  animation-name: slideInFromBottom;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+
+/* Glass Hover Effects */
+.glass {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+}
