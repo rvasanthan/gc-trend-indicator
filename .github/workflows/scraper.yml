@@ -23,6 +23,7 @@ jobs:
       - name: Run scraper
         run: |
           mkdir -p output
+          mkdir -p web/public
           python main.py
         
       - name: Commit and push data changes
