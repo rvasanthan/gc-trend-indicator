@@ -5,6 +5,7 @@ Main entry point for the scraper application.
 
 from scraper.scraper import fetch_page, get_visa_bulletin_links, extract_india_dates
 from scraper.exporter import export_to_csv, export_to_json
+from scraper.database import export_to_sqlite
 import time
 
 
@@ -78,6 +79,7 @@ def main():
         print(f"Successfully extracted data from {len(all_data)} bulletins")
         export_to_csv(all_data)
         export_to_json(all_data)
+        export_to_sqlite(all_data)
         # Also export to web public folder for the dashboard
         export_to_json(all_data, 'web/public/data.json')
         print("Data exported to output/ and web/public/data.json")
