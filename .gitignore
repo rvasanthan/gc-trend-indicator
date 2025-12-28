@@ -19,8 +19,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-output/*.csv
-output/*.json
+
 .DS_Store
 .vscode/
 .idea/
