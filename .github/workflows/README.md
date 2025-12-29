@@ -1,4 +1,4 @@
-# GitHub Actions Workflows
+# GitHub Actions Workflow
 
 ## Automated Visa Bulletin Scraper
 
