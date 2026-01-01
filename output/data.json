@@ -636,18 +636,6 @@
     "india_3rd_filing": "01FEB10"
   },
   {
-    "month": "March",
-    "month_num": 3,
-    "year": 2020,
-    "bulletin_title": "Visa Bulletin For March 2020",
-    "india_1st": "01MAR15",
-    "india_2nd": "22MAY09",
-    "india_3rd": "15JAN09",
-    "india_1st_filing": "15MAR17",
-    "india_2nd_filing": "01JUL09",
-    "india_3rd_filing": "01FEB10"
-  },
-  {
     "month": "April",
     "month_num": 4,
     "year": 2020,
@@ -1030,6 +1018,18 @@
     "india_1st_filing": "C",
     "india_2nd_filing": "01MAY12",
     "india_3rd_filing": "01JUL12"
+  },
+  {
+    "month": "December",
+    "month_num": 12,
+    "year": 2022,
+    "bulletin_title": "Visa Bulletin For December 2022",
+    "india_1st": "C",
+    "india_2nd": "08OCT11",
+    "india_3rd": "15JUN12",
+    "india_1st_filing": "C",
+    "india_2nd_filing": "01MAY12",
+    "india_3rd_filing": "01AUG12"
   },
   {
     "month": "January",

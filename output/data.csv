@@ -1,4 +1,4 @@
-                    dddddðqmonth,month_num,year,bulletin_title,india_1st,india_2nd,india_3rd,india_1st_filing,india_2nd_filing,india_3rd_filing
+month,month_num,year,bulletin_title,india_1st,india_2nd,india_3rd,india_1st_filing,india_2nd_filing,india_3rd_filing
 October,10,2015,Visa Bulletin For October 2015,,,,,,
 November,11,2015,Visa Bulletin For November 2015,,,,,,
 December,12,2015,Visa Bulletin For December 2015,,,,,,
@@ -52,7 +52,6 @@ November,11,2019,Visa Bulletin For November 2019,01JAN15,13MAY09,01JAN09,15MAR17
 December,12,2019,Visa Bulletin For December 2019,01JAN15,15MAY09,01JAN09,15MAR17,01JUL09,01FEB10
 January,1,2020,Visa Bulletin For January 2020,01JAN15,18MAY09,01JAN09,15MAR17,01JUL09,01FEB10
 February,2,2020,Visa Bulletin For February 2020,01JAN15,19MAY09,08JAN09,15MAR17,01JUL09,01FEB10
-March,3,2020,Visa Bulletin For March 2020,01MAR15,22MAY09,15JAN09,15MAR17,01JUL09,01FEB10
 April,4,2020,Visa Bulletin For April 2020,01MAY15,25MAY09,22JAN09,15MAR17,01JUL09,01FEB10
 May,5,2020,Visa Bulletin For May 2020,01AUG15,02JUN09,01MAR09,15MAR17,01JUL09,01FEB10
 June,6,2020,Visa Bulletin For June 2020,08JUN16,12JUN09,01APR09,15MAR17,01JUL09,01FEB10
@@ -85,6 +84,7 @@ August,8,2022,Visa Bulletin For August 2022,C,01DEC14,15FEB12,C,01JAN15,22FEB12
 September,9,2022,Visa Bulletin For September 2022,C,01DEC14,15FEB12,C,01JAN15,22FEB12
 October,10,2022,Visa Bulletin For October 2022,C,01APR12,01APR12,C,01MAY12,01JUL12
 November,11,2022,Visa Bulletin For November 2022,C,01APR12,01APR12,C,01MAY12,01JUL12
+December,12,2022,Visa Bulletin For December 2022,C,08OCT11,15JUN12,C,01MAY12,01AUG12
 January,1,2023,Visa Bulletin For January 2023,01FEB22,08OCT11,15JUN12,01JUN22,01MAY12,01AUG12
 February,2,2023,Visa Bulletin For February 2023,01FEB22,08OCT11,15JUN12,01JUN22,01MAY12,01AUG12
 March,3,2023,Visa Bulletin For March 2023,01FEB22,08OCT11,15JUN12,01JUN22,01MAY12,01AUG12
