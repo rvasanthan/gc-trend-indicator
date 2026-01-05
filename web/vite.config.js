@@ -4,6 +4,21 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // Set base to '/' if deploying to Vercel/Netlify, or '/repo-name/' for GitHub Pages
+  // Base path for deployment
+  // - Use '/gc-trend-indicator/' for GitHub Pages or GitLab Pages
+  // - Use '/' for Vercel, Netlify, or custom domain
   base: '/gc-trend-indicator/',
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    // Optimize chunks for better caching
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'chart-vendor': ['recharts'],
+        },
+      },
+    },
+  },
 })

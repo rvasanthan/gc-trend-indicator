@@ -1,0 +1,71 @@
+# GitLab CI/CD Configuration for deploying to GitLab Pages
+
+stages:
+  - build
+  - deploy
+
+variables:
+  NODE_VERSION: "20"
+
+# Cache node_modules for faster builds
+cache:
+  key:
+    files:
+      - web/package-lock.json
+  paths:
+    - web/node_modules/
+
+# Build the React application
+build:
+  stage: build
+  image: node:${NODE_VERSION}-alpine
+  script:
+    - echo "Building the application..."
+    - cd web
+    - npm ci --prefer-offline
+    - npm run build
+    - echo "Build completed successfully!"
+  artifacts:
+    paths:
+      - web/dist/
+    expire_in: 1 hour
+  only:
+    - main
+    - master
+
+# Deploy to GitLab Pages
+pages:
+  stage: deploy
+  image: alpine:latest
+  dependencies:
+    - build
+  script:
+    - echo "Deploying to GitLab Pages..."
+    # GitLab Pages expects files in a 'public' directory
+    - mkdir -p public
+    - cp -r web/dist/* public/
+    - echo "Deployment prepared!"
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - main
+    - master
+  environment:
+    name: production
+    url: https://$CI_PROJECT_NAMESPACE.gitlab.io/$CI_PROJECT_NAME
+
+# Optional: Test the build in merge requests
+test:build:
+  stage: build
+  image: node:${NODE_VERSION}-alpine
+  script:
+    - cd web
+    - npm ci --prefer-offline
+    - npm run build
+  only:
+    - merge_requests
+  except:
+    - main
+    - master

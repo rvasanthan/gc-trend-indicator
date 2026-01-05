@@ -264,7 +264,7 @@ function App() {
       {/* Sidebar */}
       <aside className={`fixed left-0 top-0 bottom-0 w-80 glass-premium border-r border-white/40 shadow-2xl z-50 transition-all duration-500 overflow-hidden ${
         isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-      } lg:translate-x-0 lg:left-6 lg:top-6 lg:bottom-6 lg:w-20 lg:rounded-[2.5rem] xl:w-72">
+      } lg:translate-x-0 lg:left-6 lg:top-6 lg:bottom-6 lg:w-20 lg:rounded-[2.5rem] xl:w-72`}>
         <div className="p-6 lg:p-8 flex flex-col h-full">
           <div className="flex items-center gap-4 mb-12 lg:mb-16 px-2 lg:hidden xl:flex">
             <div className="w-14 h-14 bg-gradient-to-br from-indigo-600 via-purple-600 to-violet-700 rounded-2xl flex items-center justify-center text-3xl shadow-xl shadow-indigo-300/50 animate-float">
