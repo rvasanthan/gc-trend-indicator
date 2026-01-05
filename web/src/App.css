@@ -1,13 +1,17 @@
 /* Custom Chart Overrides */
 .recharts-cartesian-grid-horizontal line {
-  stroke-opacity: 0.4;
+  stroke-opacity: 0.3;
 }
 
 .recharts-tooltip-cursor {
-  stroke-opacity: 0.2;
+  stroke-opacity: 0.15;
 }
 
-/* Smooth Tab Transitions */
+.recharts-surface {
+  overflow: visible;
+}
+
+/* Smooth Animations */
 .animate-in {
   animation-duration: 0.8s;
   animation-fill-mode: both;
@@ -15,7 +19,7 @@
 
 @keyframes slideInFromBottom {
   0% {
-    transform: translateY(20px);
+    transform: translateY(30px);
     opacity: 0;
   }
   100% {
@@ -28,9 +32,23 @@
   animation-name: slideInFromBottom;
 }
 
-/* Custom Scrollbar */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Premium Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -38,20 +56,71 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
   border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #cbd5e1;
+  background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+  background-clip: padding-box;
 }
 
-/* Glass Hover Effects */
-.glass {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* Smooth Transitions */
+* {
+  transition-property: color, background-color, border-color, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.glass:hover {
-  border-color: rgba(255, 255, 255, 0.8);
-  transform: translateY(-2px);
+button, a {
+  -webkit-tap-highlight-color: transparent;
 }
+
+/* Mobile Touch Improvements */
+@media (hover: none) and (pointer: coarse) {
+  button, a, .touch-manipulation {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Enhanced Glass Effect */
+.glass-premium {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+  .glass-premium {
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .glass, .glass-premium {
+    background: white !important;
+    backdrop-filter: none !important;
+  }
+  
+  aside, button {
+    display: none !important;
+  }
+}
+

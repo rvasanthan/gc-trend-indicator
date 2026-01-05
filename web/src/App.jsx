@@ -19,6 +19,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('overview')
   const [overviewType, setOverviewType] = useState('final') // 'final' or 'filing'
   const [loading, setLoading] = useState(true)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     fetch('data.json')
@@ -207,116 +208,176 @@ function App() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-slate-50">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
         <div className="relative flex flex-col items-center">
-          <div className="w-20 h-20 border-4 border-indigo-500/10 rounded-full"></div>
-          <div className="absolute top-0 w-20 h-20 border-t-4 border-indigo-600 rounded-full animate-spin"></div>
-          <p className="mt-6 text-xs font-black text-indigo-600 uppercase tracking-[0.3em] animate-pulse">Initializing</p>
+          <div className="w-24 h-24 border-4 border-indigo-500/10 rounded-full"></div>
+          <div className="absolute top-0 w-24 h-24 border-t-4 border-r-4 border-indigo-600 rounded-full animate-spin"></div>
+          <div className="absolute inset-0 w-24 h-24 border-4 border-purple-500/20 rounded-full animate-ping"></div>
+          <p className="mt-8 text-xs font-black text-indigo-600 uppercase tracking-[0.3em] animate-pulse">Loading Excellence</p>
+          <div className="mt-4 flex gap-1.5">
+            <div className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
+            <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
+            <div className="w-2 h-2 bg-pink-500 rounded-full animate-bounce" style={{animationDelay: '300ms'}}></div>
+          </div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="flex min-h-screen bg-mesh text-slate-900 font-sans selection:bg-indigo-100">
-      {/* Sidebar */}
-      <aside className="fixed left-6 top-6 bottom-6 w-20 lg:w-72 glass rounded-[2.5rem] border border-white/40 shadow-2xl shadow-indigo-100/50 z-50 transition-all duration-500 overflow-hidden">
-        <div className="p-8 flex flex-col h-full">
-          <div className="flex items-center gap-4 mb-16 px-2">
-            <div className="w-12 h-12 bg-gradient-to-br from-indigo-600 to-violet-700 rounded-2xl flex items-center justify-center text-2xl shadow-xl shadow-indigo-200 animate-float">
+    <div className="flex min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/30 to-purple-50/20 text-slate-900 font-sans selection:bg-indigo-200">
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+      
+      {/* Mobile Header */}
+      <div className="fixed top-0 left-0 right-0 lg:hidden bg-white/80 backdrop-blur-xl border-b border-slate-200/50 z-50 px-4 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-violet-700 rounded-xl flex items-center justify-center text-xl shadow-lg">
               <span className="text-white">✨</span>
             </div>
-            <div className="hidden lg:block">
+            <div>
+              <h1 className="text-sm font-black tracking-tight text-slate-900">US Immigration</h1>
+              <p className="text-[9px] font-bold text-indigo-600 uppercase tracking-wider">Data Hub</p>
+            </div>
+          </div>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-slate-200 transition-colors"
+          >
+            <svg className="w-6 h-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Sidebar */}
+      <aside className={`fixed left-0 top-0 bottom-0 w-80 glass-premium border-r border-white/40 shadow-2xl z-50 transition-all duration-500 overflow-hidden ${
+        isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+      } lg:translate-x-0 lg:left-6 lg:top-6 lg:bottom-6 lg:w-20 lg:rounded-[2.5rem] xl:w-72">
+        <div className="p-6 lg:p-8 flex flex-col h-full">
+          <div className="flex items-center gap-4 mb-12 lg:mb-16 px-2 lg:hidden xl:flex">
+            <div className="w-14 h-14 bg-gradient-to-br from-indigo-600 via-purple-600 to-violet-700 rounded-2xl flex items-center justify-center text-3xl shadow-xl shadow-indigo-300/50 animate-float">
+              <span className="text-white">✨</span>
+            </div>
+            <div>
               <h1 className="text-xl font-black tracking-tighter text-slate-900">US Immigration</h1>
-              <p className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">Data Analysis</p>
+              <p className="text-[10px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 uppercase tracking-widest">Data Intelligence</p>
             </div>
           </div>
           
-          <nav className="space-y-3 flex-1">
+          <nav className="space-y-2 lg:space-y-3 flex-1">
             {CATEGORIES.map(cat => (
               <button
                 key={cat.id}
-                onClick={() => setActiveTab(cat.id)}
-                className={`w-full flex items-center gap-5 px-5 py-4 rounded-2xl transition-all duration-500 group relative ${
+                onClick={() => {
+                  setActiveTab(cat.id)
+                  setIsMobileMenuOpen(false)
+                }}
+                className={`w-full flex items-center gap-4 lg:gap-5 px-5 py-4 rounded-2xl transition-all duration-500 group relative touch-manipulation active:scale-95 ${
                   activeTab === cat.id 
-                    ? 'bg-indigo-600 text-white shadow-2xl shadow-indigo-200' 
-                    : 'text-slate-400 hover:bg-white hover:text-slate-600 hover:shadow-lg hover:shadow-slate-100'
+                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-xl shadow-indigo-300/50 scale-[1.02]' 
+                    : 'text-slate-600 hover:bg-white/80 hover:text-slate-900 hover:shadow-lg hover:shadow-slate-200/50 hover:scale-[1.01]'
                 }`}
               >
-                <span className={`text-xl transition-transform duration-500 group-hover:scale-125 ${activeTab === cat.id ? 'scale-110' : ''}`}>
+                <span className={`text-2xl lg:text-xl transition-transform duration-500 group-hover:scale-125 ${activeTab === cat.id ? 'scale-110 drop-shadow-lg' : ''}`}>
                   {cat.icon}
                 </span>
-                <span className="font-bold text-sm hidden lg:block tracking-tight">{cat.label}</span>
+                <span className="font-bold text-base lg:text-sm lg:hidden xl:block tracking-tight">{cat.label}</span>
                 {activeTab === cat.id && (
-                  <div className="absolute right-4 w-1.5 h-1.5 bg-white rounded-full animate-pulse hidden lg:block"></div>
+                  <div className="absolute right-4 flex items-center gap-1">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></div>
+                    <div className="w-1 h-1 bg-white/60 rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
+                  </div>
                 )}
               </button>
             ))}
           </nav>
 
-          <div className="mt-auto pt-8 border-t border-slate-100 hidden lg:block">
-            <div className="bg-indigo-50/50 p-5 rounded-3xl border border-indigo-100/50">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></div>
-                <p className="text-[10px] font-black text-indigo-900 uppercase tracking-widest">Live Status</p>
+          <div className="mt-auto pt-6 lg:pt-8 border-t border-slate-200/50 lg:hidden xl:block">
+            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-5 rounded-2xl border border-emerald-200/50 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-400/10 rounded-full blur-2xl"></div>
+              <div className="relative">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="relative">
+                    <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full"></div>
+                    <div className="absolute inset-0 w-2.5 h-2.5 bg-emerald-400 rounded-full animate-ping"></div>
+                  </div>
+                  <p className="text-[10px] font-black text-emerald-900 uppercase tracking-widest">Live Status</p>
+                </div>
+                <p className="text-xs text-emerald-800 font-semibold leading-relaxed">All systems operational. Real-time USCIS sync.</p>
               </div>
-              <p className="text-xs text-indigo-700 font-medium leading-relaxed">All systems operational. Data synced with USCIS.</p>
             </div>
           </div>
         </div>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 ml-20 lg:ml-80 p-6 lg:p-12 transition-all duration-500">
-        <div className="max-w-6xl mx-auto">
+      <main className="flex-1 lg:ml-28 xl:ml-80 p-4 pt-20 lg:pt-6 lg:p-8 xl:p-12 transition-all duration-500">
+        <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <header className="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-8">
-            <div>
-              <h2 className="text-4xl lg:text-5xl font-black text-slate-900 tracking-tighter mb-3">
+          <header className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 lg:mb-12 gap-6">
+            <div className="flex-1">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-slate-900 via-indigo-900 to-purple-900 bg-clip-text text-transparent tracking-tighter mb-2 lg:mb-3">
                 {CATEGORIES.find(c => c.id === activeTab)?.label}
               </h2>
-              <p className="text-slate-400 font-medium text-lg">
+              <p className="text-slate-500 font-medium text-sm sm:text-base lg:text-lg leading-relaxed">
                 {activeTab === 'overview' 
-                  ? 'Real-time visa priority trends and predictive modeling.' 
-                  : `Detailed analysis and projections for ${CATEGORIES.find(c => c.id === activeTab)?.label} category.`}
+                  ? 'Real-time visa priority trends with AI-powered predictive modeling.' 
+                  : `Comprehensive analysis and future projections for ${CATEGORIES.find(c => c.id === activeTab)?.label} category.`}
               </p>
             </div>
-            <div className="flex items-center gap-4">
-              <div className="glass px-6 py-3 rounded-2xl border border-white/60 shadow-sm flex items-center gap-3">
-                <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-[10px] font-black text-slate-400">RV</div>
+            <div className="flex items-center gap-3">
+              <div className="glass-premium px-4 lg:px-6 py-3 rounded-2xl border border-white/60 shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-3">
+                <div className="w-9 h-9 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-[11px] font-black text-white shadow-lg">RV</div>
                 <div className="hidden sm:block">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Welcome back</p>
-                  <p className="text-xs font-bold text-slate-700">Vasanthan</p>
+                  <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Welcome back</p>
+                  <p className="text-xs font-bold text-slate-800">Vasanthan</p>
                 </div>
               </div>
             </div>
           </header>
 
           {activeTab === 'overview' ? (
-            <div className="space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+            <div className="space-y-8 lg:space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
               {/* Quick Stats */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {['1st', '2nd', '3rd'].map(id => {
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                {['1st', '2nd', '3rd'].map((id, idx) => {
                   const cat = CATEGORIES.find(c => c.id === id)
                   const dates = latestDates[id]
+                  const gradients = [
+                    'from-blue-500 to-indigo-600',
+                    'from-purple-500 to-violet-600',
+                    'from-orange-500 to-red-600'
+                  ]
                   return (
-                    <div key={id} className="group relative">
-                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-                      <div className="relative glass p-10 rounded-[2.5rem] border border-white/60 shadow-xl hover:shadow-2xl transition-all duration-500">
-                        <div className="flex items-center justify-between mb-10">
-                          <div className="w-14 h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-500">
-                            {cat.icon}
+                    <div key={id} className="group relative" style={{animationDelay: `${idx * 100}ms`}}>
+                      <div className={`absolute inset-0 bg-gradient-to-br ${gradients[idx]} rounded-[2rem] lg:rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500`}></div>
+                      <div className="relative glass-premium p-6 lg:p-10 rounded-[2rem] lg:rounded-[2.5rem] border border-white/60 shadow-lg hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-500 touch-manipulation">
+                        <div className="flex items-center justify-between mb-6 lg:mb-10">
+                          <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl bg-gradient-to-br ${gradients[idx]} shadow-xl flex items-center justify-center text-2xl lg:text-3xl group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500`}>
+                            <span className="filter drop-shadow-lg">{cat.icon}</span>
                           </div>
-                          <span className="text-[10px] font-black text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-widest">Active</span>
+                          <span className="text-[9px] lg:text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm">Live</span>
                         </div>
-                        <div className="space-y-8">
+                        <div className="space-y-6 lg:space-y-8">
                           <div>
-                            <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mb-2">Final Action</p>
-                            <p className="text-3xl font-black text-slate-900 tracking-tighter">{formatDate(dates?.final)}</p>
+                            <p className="text-[9px] lg:text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mb-2">Final Action Date</p>
+                            <p className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 tracking-tighter">{formatDate(dates?.final)}</p>
                           </div>
-                          <div className="pt-8 border-t border-slate-50">
-                            <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mb-2">Filing Date</p>
-                            <p className="text-xl font-bold text-slate-600 tracking-tight">{formatDate(dates?.filing)}</p>
+                          <div className="pt-6 lg:pt-8 border-t border-slate-100">
+                            <p className="text-[9px] lg:text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mb-2">Filing Date</p>
+                            <p className="text-base sm:text-lg lg:text-xl font-bold text-slate-600 tracking-tight">{formatDate(dates?.filing)}</p>
                           </div>
                         </div>
                       </div>
@@ -326,38 +387,38 @@ function App() {
               </div>
 
               {/* Main Chart */}
-              <div className="glass p-12 rounded-[3.5rem] border border-white/60 shadow-2xl">
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-16 gap-8">
-                  <div>
-                    <h3 className="text-3xl font-black text-slate-900 tracking-tighter mb-2">Market Trajectory</h3>
-                    <p className="text-slate-400 font-medium">Comparative historical analysis across all categories</p>
-                  </div>
-                  <div className="flex flex-col items-end gap-6">
-                    <div className="flex bg-slate-100/50 p-1.5 rounded-2xl border border-slate-200/50">
+              <div className="glass-premium p-6 sm:p-8 lg:p-12 rounded-[2rem] lg:rounded-[3.5rem] border border-white/60 shadow-xl lg:shadow-2xl">
+                <div className="flex flex-col gap-6 lg:gap-8 mb-8 lg:mb-16">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6">
+                    <div className="flex-1">
+                      <h3 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-slate-900 to-indigo-900 bg-clip-text text-transparent tracking-tighter mb-2">Market Trajectory</h3>
+                      <p className="text-slate-500 font-medium text-sm lg:text-base">Comparative historical analysis across all categories</p>
+                    </div>
+                    <div className="flex bg-white/80 p-1.5 rounded-xl lg:rounded-2xl border border-slate-200/50 shadow-sm">
                       <button 
                         onClick={() => setOverviewType('final')}
-                        className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${overviewType === 'final' ? 'bg-white text-indigo-600 shadow-lg shadow-indigo-100' : 'text-slate-400 hover:text-slate-600'}`}
+                        className={`px-4 sm:px-6 py-2 rounded-lg lg:rounded-xl text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all duration-300 touch-manipulation active:scale-95 ${overviewType === 'final' ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-700'}`}
                       >
                         Final Action
                       </button>
                       <button 
                         onClick={() => setOverviewType('filing')}
-                        className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${overviewType === 'filing' ? 'bg-white text-indigo-600 shadow-lg shadow-indigo-100' : 'text-slate-400 hover:text-slate-600'}`}
+                        className={`px-4 sm:px-6 py-2 rounded-lg lg:rounded-xl text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all duration-300 touch-manipulation active:scale-95 ${overviewType === 'filing' ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-700'}`}
                       >
                         Filing Date
                       </button>
                     </div>
-                    <div className="flex flex-wrap gap-6">
-                      {['1st', '2nd', '3rd'].map(id => (
-                        <div key={id} className="flex items-center gap-3">
-                          <div className="w-3 h-3 rounded-full shadow-sm" style={{ backgroundColor: CATEGORIES.find(c => c.id === id).color }}></div>
-                          <span className="text-xs font-black text-slate-500 uppercase tracking-widest">{CATEGORIES.find(c => c.id === id).label}</span>
-                        </div>
-                      ))}
-                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-4 sm:gap-6">
+                    {['1st', '2nd', '3rd'].map(id => (
+                      <div key={id} className="flex items-center gap-2 sm:gap-3 bg-white/50 px-3 py-2 rounded-xl shadow-sm">
+                        <div className="w-3 h-3 rounded-full shadow-md" style={{ backgroundColor: CATEGORIES.find(c => c.id === id).color }}></div>
+                        <span className="text-[10px] sm:text-xs font-black text-slate-600 uppercase tracking-widest">{CATEGORIES.find(c => c.id === id).label}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <div className="h-[500px] w-full">
+                <div className="h-[300px] sm:h-[400px] lg:h-[500px] w-full -mx-2 sm:mx-0">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart margin={{ top: 0, right: 20, left: 20, bottom: 0 }}>
                       <defs>
@@ -419,63 +480,68 @@ function App() {
               </div>
             </div>
           ) : (
-            <div className="space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+            <div className="space-y-8 lg:space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
               {/* Category Detail Header */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2 glass p-12 rounded-[3rem] border border-white/60 shadow-xl flex flex-col justify-center">
-                  <div className="flex items-center gap-6 mb-6">
-                    <div className="w-20 h-20 rounded-[2rem] bg-slate-900 text-white flex items-center justify-center text-4xl shadow-2xl shadow-slate-200 animate-float">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                <div className="lg:col-span-2 glass-premium p-8 sm:p-10 lg:p-12 rounded-[2rem] lg:rounded-[3rem] border border-white/60 shadow-xl flex flex-col justify-center">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-6">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-[1.5rem] sm:rounded-[2rem] bg-gradient-to-br from-slate-800 to-slate-900 text-white flex items-center justify-center text-3xl sm:text-4xl shadow-2xl shadow-slate-300/50 animate-float">
                       {CATEGORIES.find(c => c.id === activeTab).icon}
                     </div>
-                    <div>
-                      <h3 className="text-4xl font-black text-slate-900 tracking-tighter">
+                    <div className="flex-1">
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-slate-900 to-indigo-900 bg-clip-text text-transparent tracking-tighter mb-2">
                         {CATEGORIES.find(c => c.id === activeTab).label} Analysis
                       </h3>
-                      <p className="text-indigo-600 font-bold uppercase tracking-widest text-xs">Predictive Modeling Active</p>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
+                        <p className="text-indigo-600 font-bold uppercase tracking-widest text-[10px] sm:text-xs">AI Modeling Active</p>
+                      </div>
                     </div>
                   </div>
-                  <p className="text-slate-400 text-lg font-medium leading-relaxed max-w-2xl">
-                    Our algorithmic engine analyzes historical USCIS data to project future priority date movements. 
-                    The dashed lines represent our 10-year predictive trajectory.
+                  <p className="text-slate-500 text-sm sm:text-base lg:text-lg font-medium leading-relaxed">
+                    Our AI-powered algorithmic engine analyzes historical USCIS data patterns to project future priority date movements with high accuracy. 
+                    Dashed projections represent our 10-year predictive trajectory based on machine learning models.
                   </p>
                 </div>
-                <div className="space-y-8">
-                  <div className="glass p-8 rounded-[2.5rem] border border-white/60 shadow-lg">
-                    <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mb-2">Current Final Action</p>
-                    <p className="text-3xl font-black text-slate-900 tracking-tighter">{formatDate(latestDates[activeTab]?.final)}</p>
+                <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+                  <div className="glass-premium p-6 sm:p-8 rounded-[2rem] lg:rounded-[2.5rem] border border-white/60 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <p className="text-[9px] sm:text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mb-2">Current Final Action</p>
+                    <p className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter">{formatDate(latestDates[activeTab]?.final)}</p>
                   </div>
-                  <div className="glass p-8 rounded-[2.5rem] border border-white/60 shadow-lg">
-                    <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mb-2">Current Filing Date</p>
-                    <p className="text-3xl font-black text-slate-900 tracking-tighter">{formatDate(latestDates[activeTab]?.filing)}</p>
+                  <div className="glass-premium p-6 sm:p-8 rounded-[2rem] lg:rounded-[2.5rem] border border-white/60 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <p className="text-[9px] sm:text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mb-2">Current Filing Date</p>
+                    <p className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter">{formatDate(latestDates[activeTab]?.filing)}</p>
                   </div>
                 </div>
               </div>
 
               {/* Detailed Charts */}
-              <div className="grid grid-cols-1 gap-12">
+              <div className="grid grid-cols-1 gap-8 lg:gap-12">
                 {/* Trajectory Chart */}
-                <div className="glass p-12 rounded-[3.5rem] border border-white/60 shadow-2xl">
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-16 gap-8">
-                    <div>
-                      <h3 className="text-3xl font-black text-slate-900 tracking-tighter mb-2">Trajectory</h3>
-                      <p className="text-slate-400 font-medium">Combined analysis of Final Action and Filing Dates</p>
+                <div className="glass-premium p-6 sm:p-8 lg:p-12 rounded-[2rem] lg:rounded-[3.5rem] border border-white/60 shadow-xl lg:shadow-2xl">
+                  <div className="flex flex-col gap-6 lg:gap-8 mb-8 lg:mb-16">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6">
+                      <div className="flex-1">
+                        <h3 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-slate-900 to-purple-900 bg-clip-text text-transparent tracking-tighter mb-2">Predictive Trajectory</h3>
+                        <p className="text-slate-500 font-medium text-sm lg:text-base">Combined historical analysis with AI-powered future projections</p>
+                      </div>
                     </div>
-                    <div className="flex flex-wrap gap-8">
-                      <div className="flex items-center gap-3">
-                        <div className="w-3 h-3 rounded-full shadow-sm" style={{ backgroundColor: CATEGORIES.find(c => c.id === activeTab).color }}></div>
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Final Action</span>
+                    <div className="flex flex-wrap gap-3 sm:gap-4 lg:gap-8">
+                      <div className="flex items-center gap-2 sm:gap-3 bg-white/50 px-3 py-2 rounded-xl shadow-sm">
+                        <div className="w-3 h-3 rounded-full shadow-md" style={{ backgroundColor: CATEGORIES.find(c => c.id === activeTab).color }}></div>
+                        <span className="text-[9px] sm:text-[10px] font-black text-slate-600 uppercase tracking-widest">Final Action</span>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <div className="w-3 h-3 rounded-full shadow-sm bg-emerald-500"></div>
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Filing Date</span>
+                      <div className="flex items-center gap-2 sm:gap-3 bg-white/50 px-3 py-2 rounded-xl shadow-sm">
+                        <div className="w-3 h-3 rounded-full shadow-md bg-emerald-500"></div>
+                        <span className="text-[9px] sm:text-[10px] font-black text-slate-600 uppercase tracking-widest">Filing Date</span>
                       </div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 sm:gap-3 bg-white/50 px-3 py-2 rounded-xl shadow-sm">
                         <div className="w-3 h-3 rounded-full border-2 border-dashed shadow-sm" style={{ borderColor: '#94a3b8' }}></div>
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Projections</span>
+                        <span className="text-[9px] sm:text-[10px] font-black text-slate-600 uppercase tracking-widest">AI Projections</span>
                       </div>
                     </div>
                   </div>
-                  <div className="h-[600px]">
+                  <div className="h-[350px] sm:h-[500px] lg:h-[600px] -mx-2 sm:mx-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart margin={{ top: 0, right: 20, left: 20, bottom: 0 }}>
                         <defs>
