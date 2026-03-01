@@ -1510,5 +1510,29 @@
     "india_1st_filing": "01AUG23",
     "india_2nd_filing": "01DEC13",
     "india_3rd_filing": "15AUG14"
+  },
+  {
+    "month": "March",
+    "month_num": 3,
+    "year": 2026,
+    "bulletin_title": "March2026",
+    "india_1st": "01MAR23",
+    "india_2nd": "15SEP13",
+    "india_3rd": "15NOV13",
+    "india_1st_filing": "01DEC23",
+    "india_2nd_filing": "01NOV14",
+    "india_3rd_filing": "15AUG14"
+  },
+  {
+    "month": "March",
+    "month_num": 3,
+    "year": 2026,
+    "bulletin_title": "Visa Bulletin For March 2026",
+    "india_1st": "01MAR23",
+    "india_2nd": "15SEP13",
+    "india_3rd": "15NOV13",
+    "india_1st_filing": "01DEC23",
+    "india_2nd_filing": "01NOV14",
+    "india_3rd_filing": "15AUG14"
   }
 ]
