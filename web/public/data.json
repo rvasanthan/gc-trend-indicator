@@ -1,17 +1,5 @@
 [
   {
-    "month": "October",
-    "month_num": 10,
-    "year": 2015,
-    "bulletin_title": "Visa Bulletin For October 2015",
-    "india_1st": null,
-    "india_2nd": null,
-    "india_3rd": null,
-    "india_1st_filing": null,
-    "india_2nd_filing": null,
-    "india_3rd_filing": null
-  },
-  {
     "month": "November",
     "month_num": 11,
     "year": 2015,
@@ -1480,18 +1468,6 @@
     "month_num": 1,
     "year": 2026,
     "bulletin_title": "Visa Bulletin For January 2026",
-    "india_1st": "01FEB23",
-    "india_2nd": "15JUL13",
-    "india_3rd": "15NOV13",
-    "india_1st_filing": "01AUG23",
-    "india_2nd_filing": "01DEC13",
-    "india_3rd_filing": "15AUG14"
-  },
-  {
-    "month": "February",
-    "month_num": 2,
-    "year": 2026,
-    "bulletin_title": "February2026",
     "india_1st": "01FEB23",
     "india_2nd": "15JUL13",
     "india_3rd": "15NOV13",
