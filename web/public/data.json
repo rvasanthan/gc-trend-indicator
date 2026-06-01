@@ -180,6 +180,18 @@
     "india_3rd_filing": "01JUL05"
   },
   {
+    "month": "January",
+    "month_num": 1,
+    "year": 2017,
+    "bulletin_title": "Visa Bulletin For January 2017",
+    "india_1st": "C",
+    "india_2nd": "15APR08",
+    "india_3rd": "15MAR05",
+    "india_1st_filing": "C",
+    "india_2nd_filing": "22APR09",
+    "india_3rd_filing": "01JUL05"
+  },
+  {
     "month": "February",
     "month_num": 2,
     "year": 2017,
@@ -396,18 +408,6 @@
     "india_3rd_filing": "01MAY09"
   },
   {
-    "month": "August",
-    "month_num": 8,
-    "year": 2018,
-    "bulletin_title": "Visa Bulletin For August 2018",
-    "india_1st": "01JAN12",
-    "india_2nd": "15MAR09",
-    "india_3rd": "01JAN09",
-    "india_1st_filing": "C",
-    "india_2nd_filing": "22MAY09",
-    "india_3rd_filing": "01MAY09"
-  },
-  {
     "month": "September",
     "month_num": 9,
     "year": 2018,
@@ -510,6 +510,18 @@
     "bulletin_title": "Visa Bulletin For May 2019",
     "india_1st": "22FEB17",
     "india_2nd": "16APR09",
+    "india_3rd": "01JUL09",
+    "india_1st_filing": "01OCT17",
+    "india_2nd_filing": "01JUN09",
+    "india_3rd_filing": "01APR10"
+  },
+  {
+    "month": "June",
+    "month_num": 6,
+    "year": 2019,
+    "bulletin_title": "Visa Bulletin For June 2019",
+    "india_1st": "01JAN15",
+    "india_2nd": "19APR09",
     "india_3rd": "01JUL09",
     "india_1st_filing": "01OCT17",
     "india_2nd_filing": "01JUN09",
@@ -960,6 +972,18 @@
     "india_3rd_filing": "22JAN12"
   },
   {
+    "month": "August",
+    "month_num": 8,
+    "year": 2022,
+    "bulletin_title": "Visa Bulletin For August 2022",
+    "india_1st": "C",
+    "india_2nd": "01DEC14",
+    "india_3rd": "15FEB12",
+    "india_1st_filing": "C",
+    "india_2nd_filing": "01JAN15",
+    "india_3rd_filing": "22FEB12"
+  },
+  {
     "month": "September",
     "month_num": 9,
     "year": 2022,
@@ -1207,6 +1231,18 @@
     "india_1st": "01MAR21",
     "india_2nd": "15APR12",
     "india_3rd": "15AUG12",
+    "india_1st_filing": "01APR21",
+    "india_2nd_filing": "15MAY12",
+    "india_3rd_filing": "15SEP12"
+  },
+  {
+    "month": "June",
+    "month_num": 6,
+    "year": 2024,
+    "bulletin_title": "Visa Bulletin For June 2024",
+    "india_1st": "01MAR21",
+    "india_2nd": "15APR12",
+    "india_3rd": "22AUG12",
     "india_1st_filing": "01APR21",
     "india_2nd_filing": "15MAY12",
     "india_3rd_filing": "15SEP12"
